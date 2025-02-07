@@ -36,25 +36,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Detect package manager
         run: echo "PM=$(jq -r '.packageManager // "npm"' package.json | cut -d '@' -f 1)" >> $GITHUB_ENV
       - name: Install pnpm
         if: env.PM == 'pnpm'
         uses: pnpm/action-setup@v2
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: lts/*
           cache: ${{ env.PM }}
       - name: Setup Pages
-        uses: actions/configure-pages@v1
+        uses: actions/configure-pages@v3
       - name: Install dependencies
         run: ${{ env.PM }} ${{ env.PM == 'npm' && 'ci' || 'install --frozen-lockfile' }}
       - name: Build site using VitePress
         run: ${{ env.PM == 'npm' && 'npx --no-install' || env.PM }} vitepress build ${{ env.VP_ROOT }} --base /${{ github.event.repository.name }}/
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v2
         with:
           path: ${{ env.VP_ROOT }}/.vitepress/dist
 
@@ -68,4 +68,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v2
