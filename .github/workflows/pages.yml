@@ -24,23 +24,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4  # Updated to v4
+        uses: actions/checkout@v4
 
       - name: Detect package manager
         run: echo "PM=$(jq -r '.packageManager // "npm"' package.json | cut -d '@' -f 1)" >> $GITHUB_ENV
 
       - name: Install pnpm
         if: env.PM == 'pnpm'
-        uses: pnpm/action-setup@v3  # Updated to v3
+        uses: pnpm/action-setup@v3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4  # Updated to v4
+        uses: actions/setup-node@v4
         with:
           node-version: lts/*
           cache: ${{ env.PM }}
 
       - name: Setup GitHub Pages
-        uses: actions/configure-pages@v3  # Updated to v3
+        uses: actions/configure-pages@v3
 
       - name: Install dependencies
         run: ${{ env.PM }} ${{ env.PM == 'npm' && 'ci' || 'install --frozen-lockfile' }}
@@ -48,12 +48,15 @@ jobs:
       - name: Build VitePress site
         run: ${{ env.PM == 'npm' && 'npx --no-install' || env.PM }} vitepress build ${{ env.VP_ROOT }} --base /${{ github.event.repository.name }}/
 
+      - name: Verify build output
+        run: ls -l ${{ env.VP_ROOT }}/.vitepress/dist
+
       - name: Upload artifact (GitHub Pages)
-        uses: actions/upload-artifact@v4  # FIXED: Upgraded to v4
+        uses: actions/upload-artifact@v4
         with:
-          name: github-pages
+          name: github-pages  # Ensure this matches the name in download-artifact
           path: ${{ env.VP_ROOT }}/.vitepress/dist
-          retention-days: 1  # Keep artifacts for 1 day to avoid excessive storage
+          retention-days: 1
 
   deploy:
     runs-on: ubuntu-latest
@@ -63,11 +66,11 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v4  # FIXED: Upgraded to v4
+        uses: actions/download-artifact@v4
         with:
-          name: github-pages
+          name: github-pages  # This must match upload-artifact's name
           path: ./
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2  # Updated to v2
+        uses: actions/deploy-pages@v2
