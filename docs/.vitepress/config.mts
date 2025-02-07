@@ -10,6 +10,7 @@ export default defineConfig({
   title: "Бази даних",
   description: "Лабораторні роботи з дисципліни Організація баз даних",
   lang: "uk",
+  base: "/db_labs/",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
