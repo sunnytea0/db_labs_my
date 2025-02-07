@@ -10,15 +10,12 @@
   "scripts": {
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "deploy": "gh-pages -d docs/.vitepress/dist",
-    "publish": "publish.sh",
     "docs:preview": "vitepress preview docs"
   },
   "devDependencies": {
     "vitepress": "^1.6.3"
   },
   "dependencies": {
-    "gh-pages": "^6.3.0",
     "markdown-it": "^14.1.0",
     "markdown-it-admonition": "^1.0.4",
     "markdown-it-katex": "^2.0.3",
