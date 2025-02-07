@@ -1,4 +1,9 @@
 import { defineConfig } from "vitepress";
+import markdownIt from "markdown-it";
+import markdownKatex from "markdown-it-katex";
+import markdownPlantuml from "markdown-it-plantuml";
+import markdownAdmonition from "markdown-it-admonition";
+import markdownTaskLists from "markdown-it-task-lists";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -64,4 +69,14 @@ export default defineConfig({
       { icon: "github", link: "https://github.com/TockePie/db_labs" },
     ],
   },
+
+  markdown: {
+    config: (md) => {
+      md.set({ html: true })
+      md.use(markdownKatex)
+      md.use(markdownPlantuml)
+      md.use(markdownAdmonition)
+      md.use(markdownTaskLists)
+    }
+  }
 });
