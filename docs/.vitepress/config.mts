@@ -16,7 +16,7 @@ export default defineConfig({
     nav: [
       { text: "Головна", link: "/" },
       { text: "Зміст", link: "/intro/README" },
-      { text: "Автори", link: "/authors" },
+      { text: "Автори", link: "/README" },
     ],
 
     footer: {

@@ -12,5 +12,5 @@ hero:
       link: /intro/README
     - theme: alt
       text: Автори
-      link: /authors
+      link: /README
 ---
