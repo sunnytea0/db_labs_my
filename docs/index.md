@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: Система організації та управління опитуваннями експертів
+  name: Система організації та управління опитуваннями експертів "Voice of Experts"
   # text: 
   tagline: Лабораторні роботи з дисципліни "Організація баз даних"
   actions:
@@ -12,5 +12,5 @@ hero:
       link: /intro/README
     - theme: alt
       text: Автори
-      link: /authors
+      link: /README
 ---

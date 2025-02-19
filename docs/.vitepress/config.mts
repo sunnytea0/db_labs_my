@@ -7,7 +7,7 @@ import markdownTaskLists from "markdown-it-task-lists";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "Бази даних",
+  title: "Voice of Experts",
   description: "Лабораторні роботи з дисципліни Організація баз даних",
   lang: "uk",
   base: "/db_labs/",
@@ -16,7 +16,7 @@ export default defineConfig({
     nav: [
       { text: "Головна", link: "/" },
       { text: "Зміст", link: "/intro/README" },
-      { text: "Автори", link: "/authors" },
+      { text: "Автори", link: "/README" },
     ],
 
     footer: {
