@@ -81,4 +81,7 @@ _[Робляться висновки щодо доцільності розро
 
 ## Посилання
 
-_[Розділ містить повний список всіх документів, про які згадується.]_
+1. [SurveyMonkey](https://www.surveymonkey.com/product/)  
+2. [Survio](https://www.survio.com/en/features)  
+3. [SurveyJS](https://surveyjs.io/features)  
+4. [GoogleForms](https://workspace.google.com/products/forms/)  
