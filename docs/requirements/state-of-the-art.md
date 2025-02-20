@@ -81,4 +81,12 @@ _[Робляться висновки щодо доцільності розро
 
 ## Посилання
 
-_[Розділ містить повний список всіх документів, про які згадується.]_
+5. [Методи експертного оцінювання](https://uk.wikipedia.org/wiki/%D0%9C%D0%B5%D1%82%D0%BE%D0%B4%D0%B8_%D0%B5%D0%BA%D1%81%D0%BF%D0%B5%D1%80%D1%82%D0%BD%D0%BE%D0%B3%D0%BE_%D0%BE%D1%86%D1%96%D0%BD%D1%8E%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F)
+6. [Метод Дельфі](https://uk.wikipedia.org/wiki/%D0%9C%D0%B5%D1%82%D0%BE%D0%B4_%D0%94%D0%B5%D0%BB%D1%8C%D1%84%D1%96)
+7. [Мозковий штурм](https://uk.wikipedia.org/wiki/%D0%9C%D0%BE%D0%B7%D0%BA%D0%BE%D0%B2%D0%B8%D0%B9_%D1%88%D1%82%D1%83%D1%80%D0%BC)
+8. [Сценарний метод прогнозування](https://en.wikipedia.org/wiki/Scenario_analysis)
+9. [Метод 635](https://en.wikipedia.org/wiki/Brainwriting)
+10. [Діаграма спорідненості](https://en.wikipedia.org/wiki/Affinity_diagram)
+11. [Експертні оцінки в ухваленні рішень](https://www.sciencedirect.com/topics/computer-science/expert-judgment)
+
+
