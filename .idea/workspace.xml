@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ad4b20e-2cbc-4d8b-a21d-b69eee098e8c" name="Changes" comment="" />
+    <list default="true" id="3ad4b20e-2cbc-4d8b-a21d-b69eee098e8c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/db_labs/db_labs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/requirements/state-of-the-art.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/requirements/state-of-the-art.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,8 +32,9 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "Lab1/rina",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/heund/Documents/GitHub/db_labs/db_labs",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -39,6 +43,21 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="db_labs" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="db_labs" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -61,6 +80,7 @@
       <workItem from="1739996436401" duration="1662000" />
       <workItem from="1739998134761" duration="155000" />
       <workItem from="1739998343190" duration="739000" />
+      <workItem from="1740036337513" duration="184000" />
     </task>
     <servers />
   </component>
