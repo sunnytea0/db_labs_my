@@ -38,7 +38,7 @@ _[Робляться висновки щодо доцільності розро
 
 ## Посилання
 
-[SurveyMonkey](https://www.surveymonkey.com/product/)  
-[Survio](https://www.survio.com/en/features)  
-[SurveyJS](https://surveyjs.io/features)  
-[GoogleForms](https://workspace.google.com/products/forms/)  
+1. [SurveyMonkey](https://www.surveymonkey.com/product/)  
+2. [Survio](https://www.survio.com/en/features)  
+3. [SurveyJS](https://surveyjs.io/features)  
+4. [GoogleForms](https://workspace.google.com/products/forms/)  
