@@ -35,6 +35,66 @@
 
 </center>
 
+## Схема клієнта
+
+<center style="
+    border-radius:4px;
+    border: 1px solid #cfd7e6;
+    box-shadow: 0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);
+    padding: 1em;"
+>
+
+@startuml
+
+    left to right direction
+
+    actor Client
+
+    ' Група взаємодії з обліковим записом
+    usecase "UserManageAccount\nВзаємодія з\nобліковим записом" as UInteraction
+    usecase "UserRegistration\nРеєстрація" as URegister
+    usecase "UserLogin\nВхід у систему" as ULogin
+
+    UInteraction -u-> URegister
+    UInteraction -u-> ULogin
+
+    ' Група взаємодії з результатами
+    usecase "SurveyManageResults\nВзаємодія\nз результатами" as SResults
+    usecase "SurveyResultsView\nПерегляд відповідей" as SView
+    usecase "UserCompletesSurvey\nЗаповнення опитування" as SComplete
+
+    SResults -d-> SView
+    SResults -d-> SComplete
+
+    ' Інші сценарії роботи з опитуваннями
+    usecase "SurveyCreate\nСтворення опитування" as SCreate
+    usecase "SurveyUpdate\nОновлення опитування" as SUpdate
+    usecase "SurveyDelete\nВидалення опитування" as SDelete
+    usecase "SurveyReminder\nНагадування" as SReminder
+
+    usecase "UserEditResponses\nРедагування відповідей" as SEdit
+    usecase "SurveyResultsExport\nЕкспорт результатів" as SExport
+    usecase "SurveyFeedback\nНадання відгуку" as SFeedback
+
+    Client -[hidden]-> UInteraction
+
+    ' Зв'язки клієнта
+    Client -u-> UInteraction
+    Client -d-> SResults
+    Client -l-> SCreate
+    Client -d-> SReminder
+    Client -l-> SFeedback
+
+    ' Допоміжні сценарії
+    SView ..> SExport
+    SComplete ..> SEdit
+    SCreate ..> SUpdate
+    SCreate ..> SDelete
+
+@enduml
+
+</center>
+
 ## Example
 
 В цьому файлі необхідно перелічити всі документи, розроблені в проекті та дати посилання на них.
