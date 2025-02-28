@@ -55,26 +55,23 @@
     usecase "UserRegistration\nРеєстрація" as URegister
     usecase "UserLogin\nВхід у систему" as ULogin
 
-    UInteraction -u-> URegister
-    UInteraction -u-> ULogin
+    UInteraction ..> URegister
+    UInteraction ..> ULogin
 
     ' Група взаємодії з результатами
     usecase "SurveyManageResults\nВзаємодія\nз результатами" as SResults
     usecase "SurveyResultsView\nПерегляд відповідей" as SView
-    usecase "UserCompletesSurvey\nЗаповнення опитування" as SComplete
 
-    SResults -d-> SView
-    SResults -d-> SComplete
+    SResults ..> SView
 
     ' Інші сценарії роботи з опитуваннями
     usecase "SurveyCreate\nСтворення опитування" as SCreate
     usecase "SurveyUpdate\nОновлення опитування" as SUpdate
     usecase "SurveyDelete\nВидалення опитування" as SDelete
     usecase "SurveyReminder\nНагадування" as SReminder
-
-    usecase "UserEditResponses\nРедагування відповідей" as SEdit
     usecase "SurveyResultsExport\nЕкспорт результатів" as SExport
     usecase "SurveyFeedback\nНадання відгуку" as SFeedback
+    usecase "SurveyShareAccess\nПоділитись опитуванням" as SShare
 
     Client -[hidden]-> UInteraction
 
@@ -82,14 +79,12 @@
     Client -u-> UInteraction
     Client -d-> SResults
     Client -l-> SCreate
+    Client -r-> SUpdate
+    Client -r-> SDelete
+    Client -r-> SExport
     Client -d-> SReminder
     Client -l-> SFeedback
-
-    ' Допоміжні сценарії
-    SView ..> SExport
-    SComplete ..> SEdit
-    SCreate ..> SUpdate
-    SCreate ..> SDelete
+    Client -r-> SShare
 
 @enduml
 
