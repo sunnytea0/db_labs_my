@@ -35,6 +35,45 @@
 
 </center>
 
+## Схема клієнта
+
+<center style="
+    border-radius:4px;
+    border: 1px solid #cfd7e6;
+    box-shadow: 0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);
+    padding: 1em;"
+>
+
+@startuml
+    actor Client
+    usecase "UserManageAccount\nВзаємодія з\nобліковим записом" as UInteraction
+    usecase "UserRegistration\nРеєстрація" as URegister
+    usecase "UserLogin\nВхід у систему" as ULogin
+    usecase "SurveyManageResults\nВзаємодія\nз результатами" as SResults
+    usecase "SurveyResultsView\nПерегляд відповідей" as SView
+    usecase "SurveyResultsExport\nЕкспорт результатів" as SExport
+    usecase "SurveyCreate\nСтворення опитування" as SCreate
+    usecase "SurveyUpdate\nОновлення опитування" as SUpdate
+    usecase "SurveyDelete\nВидалення опитування" as SDelete
+    usecase "SurveyReminder\nНагадування" as SReminder
+    usecase "SurveyShareAccess\nПоділитись опитуванням" as SShare
+    SResults ..> SView
+    SResults ..> SExport
+    UInteraction ..> URegister
+    UInteraction ..> ULogin
+    Client -[hidden]-> UInteraction
+    Client -[hidden]-> SResults
+    Client -u-> UInteraction
+    Client -d-> SResults
+    Client -l-> SCreate
+    Client -u-> SUpdate
+    Client -u-> SDelete
+    Client -d-> SReminder
+    Client -r-> SShare
+@enduml
+
+</center>
+
 ## Сценарії використання
 
 ### SurveyResultsExport
