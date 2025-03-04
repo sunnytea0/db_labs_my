@@ -246,13 +246,11 @@ skinparam ActivityBackgroundColor #d1a6e2
     - InvalidResponseException
     end note
     :система обробляє зміни;
-
     note right #D10000
     <b>Possible error:
     -  SurveyClosedException
     end note
-
-    :відредаговані відповіді оновлюються у базі
+    :відредаговані відповіді оновлюються у базі;
 
     stop;
 
