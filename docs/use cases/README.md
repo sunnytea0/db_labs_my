@@ -576,6 +576,10 @@ skinparam ActivityBackgroundColor #d1a6e2
     start;
     :система перевіряє список активних опитувань користувача;
     :якщо є незавершені опитування, надсилається нагадування;
+    note right #D10000
+    <b>Possible error:
+    - NoPendingSurveysException
+    end note
 
     |Користувач|
     :користувач отримує повідомлення про необхідність завершити опитування;
