@@ -1,5 +1,31 @@
 # Модель прецедентів
 
+## Схема експерта
+
+<center style="
+    border-radius:4px;
+    border: 1px solid #cfd7e6;
+    box-shadow: 0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);
+    padding: 1em;">
+
+@startuml
+
+    actor "Експерт" as Expert #f0c5c2
+
+    usecase "SurveyInteraction\nВзаємодія з опитуванням" as SurveyInteraction
+    usecase "UserCompletesSurvey\nЗаповнення опитування" as TakeSurvey
+    usecase "UserEditResponses\nРедагування відповідей" as ChangeAnswers
+    usecase "SurveyFeedback\nСтворення нового опитування" as SurveyFeedback
+
+    Expert --> SurveyInteraction
+    SurveyInteraction .d.> TakeSurvey : extends
+    SurveyInteraction .d.> ChangeAnswers : extends
+    SurveyInteraction .l.> SurveyFeedback : extends
+
+@enduml
+
+</center>
+
 В цьому файлі необхідно перелічити всі документи, розроблені в проекті та дати посилання на них.
 
 _Модель прецедентів повинна містити загальні оглядові діаграми та специфікації прецедентів._
@@ -141,32 +167,5 @@ _Модель прецедентів повинна містити загаль�
 @enduml
 
 **Діаграма прецедентів**
-
-</center>
-
-
-<br>
-<center style="
-    border-radius:4px;
-    border: 1px solid #cfd7e6;
-    box-shadow: 0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);
-    padding: 1em;">
-
-
-@startuml
-
-    actor "Експерт" as Expert #f0c5c2
-
-    usecase "SurveyInteraction\nВзаємодія з опитуванням" as SurveyInteraction
-    usecase "UserCompletesSurvey\nЗаповнення опитування" as TakeSurvey
-    usecase "UserEditResponses\nРедагування відповідей" as ChangeAnswers
-    
-    Expert --> SurveyInteraction
-    TakeSurvey .u.> SurveyInteraction : extends
-    ChangeAnswers .u.> SurveyInteraction : extends
-
-@enduml
-
-**Діаграма прецедентів експерта**
 
 </center>
