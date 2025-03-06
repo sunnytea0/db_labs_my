@@ -45,31 +45,33 @@
 >
 
 @startuml
-actor Client
-usecase "UserManageAccount\nВзаємодія з\nобліковим записом" as UInteraction
-usecase "UserRegistration\nРеєстрація" as URegister
-usecase "UserLogin\nВхід у систему" as ULogin
-usecase "SurveyManageResults\nВзаємодія\nз результатами" as SResults
-usecase "SurveyResultsView\nПерегляд відповідей" as SView
-usecase "SurveyResultsExport\nЕкспорт результатів" as SExport
-usecase "SurveyCreate\nСтворення опитування" as SCreate
-usecase "SurveyUpdate\nОновлення опитування" as SUpdate
-usecase "SurveyDelete\nВидалення опитування" as SDelete
-usecase "SurveyReminder\nНагадування" as SReminder
-usecase "SurveyShareAccess\nПоділитись опитуванням" as SShare
-SResults ..> SView
-SResults ..> SExport
-UInteraction ..> URegister
-UInteraction ..> ULogin
-Client -[hidden]-> UInteraction
-Client -[hidden]-> SResults
-Client -u-> UInteraction
-Client -d-> SResults
-Client -l-> SCreate
-Client -u-> SUpdate
-Client -u-> SDelete
-Client -d-> SReminder
-Client -r-> SShare
+
+    actor Client
+    usecase "UserManageAccount\nВзаємодія з\nобліковим записом" as UInteraction
+    usecase "UserRegistration\nРеєстрація" as URegister
+    usecase "UserLogin\nВхід у систему" as ULogin
+    usecase "SurveyManageResults\nВзаємодія\nз результатами" as SResults
+    usecase "SurveyResultsView\nПерегляд відповідей" as SView
+    usecase "SurveyResultsExport\nЕкспорт результатів" as SExport
+    usecase "SurveyCreate\nСтворення опитування" as SCreate
+    usecase "SurveyUpdate\nОновлення опитування" as SUpdate
+    usecase "SurveyDelete\nВидалення опитування" as SDelete
+    usecase "SurveyReminder\nНагадування" as SReminder
+    usecase "SurveyShareAccess\nПоділитись опитуванням" as SShare
+    SResults ..> SView
+    SResults ..> SExport
+    UInteraction ..> URegister
+    UInteraction ..> ULogin
+    Client -[hidden]-> UInteraction
+    Client -[hidden]-> SResults
+    Client -u-> UInteraction
+    Client -d-> SResults
+    Client -l-> SCreate
+    Client -u-> SUpdate
+    Client -u-> SDelete
+    Client -d-> SReminder
+    Client -r-> SShare
+
 @enduml
 
 </center>
