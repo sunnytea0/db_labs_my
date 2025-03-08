@@ -267,6 +267,7 @@
     :користувач відкриває опитування;
     :відповідає на всі питання і надає зворотний зв’язок;
     :завершує проходження;
+    :123;
     note right #D10000
     <b>Possible error:
     - IncompleteSurveyException
@@ -539,3 +540,5 @@ skinparam ActivityBackgroundColor #d1a6e2
 @enduml
 
 </center>
+
+
