@@ -258,7 +258,7 @@
 
 @startuml
 
-    skinparam ActivityBackgroundColor #fffde7
+    skinparam ActivityBackgroundColor #d1a6e2
 
     |Користувач|
     start;
@@ -275,7 +275,7 @@
     :перевіряє\nкоректність заповнення\nанкети;
     note right #D10000
     <b>Possible error:
-    - EmptySurveyException
+    - IncompleteSurveyException
     end note
 
     :зберігає відповіді\nкористувача;
