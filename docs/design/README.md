@@ -5,46 +5,51 @@
 - модель бізнес-об'єктів
 - ER-модель
 
+<center style="
+    border-radius:4px;
+    border: 1px solid #cfd7e6;
+    box-shadow: 0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);
+    padding: 1em;">
+
 @startuml
 
 left to right direction
 
 entity User {
-    * id : INT
+    * id : UUID
     --
     first_name : VARCHAR
     last_name : VARCHAR
     email : VARCHAR
     password : VARCHAR
     phone_number : VARCHAR
-    age : INT
-    is_admin : BOOLEAN
-    role_id : INT
+    age : SMALLINT
+    role_id : UUID
 }
 
 entity Role {
-    * id : INT
+    * id : UUID
     --
     name : VARCHAR
     description : TEXT
 }
 
 entity Permission {
-    * id : INT
+    * id : UUID
     --
     name : VARCHAR
     description : TEXT
 }
 
 entity RolePermission {
-    * role_id : INT
-    * permission_id : INT
+    * role_id : UUID
+    * permission_id : UUID
 }
 
 entity Survey {
-    * id : INT
+    * id : UUID
     --
-    owner_id : INT
+    owner_id : UUID
     title : VARCHAR
     description : TEXT
     creation_date : DATETIME
@@ -53,45 +58,45 @@ entity Survey {
 }
 
 entity Question {
-    * id : INT
+    * id : UUID
     --
-    survey_id : INT
+    survey_id : UUID
     description : TEXT
     header : VARCHAR
 }
 
 entity Option {
-    * id : INT
+    * id : UUID
     --
-    question_id : INT
+    question_id : UUID
     description : TEXT
 }
 
 entity Answer {
-    * id : INT
+    * id : UUID
     --
     content : TEXT
-    user_id : INT
-    question_id : INT
-    answer_id : INT
+    user_id : UUID
+    question_id : UUID
+    answer_id : UUID
 }
 
 entity Results {
-    * id : INT
+    * id : UUID
     --
     content : TEXT
     name : VARCHAR
-    answer_id : INT
+    answer_id : UUID
 }
 
 entity Feedback {
-    * id : INT
+    * id : UUID
     --
     title : VARCHAR
     description : TEXT
     date : DATETIME
-    user_id : INT
-    survey_id : INT
+    user_id : UUID
+    survey_id : UUID
 }
 
 User }o--|| Role : "has role"
@@ -110,5 +115,8 @@ User ||--|{ Feedback : "writes"
 Survey ||--|{ Feedback : "receives"
 
 @enduml
+
+
+</center>
 
 - реляційна схема
