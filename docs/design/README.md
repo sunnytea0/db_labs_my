@@ -27,7 +27,6 @@ entity User.email #aaffaa
 entity User.phone_number #aaffaa
 entity User.password #aaffaa
 entity User.age #aaffaa
-entity User.is_admin #aaffaa
 
 User.id -d-* User
 User.first_name -d-* User
@@ -36,7 +35,6 @@ User.email -d-* User
 User.phone_number -d-* User
 User.password -d-* User
 User.age -d-* User
-User.is_admin -d-* User
 
 entity Answer #f74564
 entity Answer.id #FFC0CB
@@ -114,6 +112,24 @@ Survey.creation_date -d-* Survey
 Survey.close_date -d-* Survey
 Survey.title -d-* Survey
 
+entity Role #0c56bd
+entity Role.id #aaddff
+entity Role.name #aaddff
+entity Role.description #aaddff
+
+Role.id -d-* Role
+Role.name -d-* Role
+Role.description -d-* Role
+
+entity Permission #14f749
+entity Permission.id #ccee88
+entity Permission.name #ccee88
+entity Permission.description #ccee88
+
+Permission.id -d-* Permission
+Permission.name -d-* Permission
+Permission.description -d-* Permission
+
 User -- Answer : user_id
 User -- Feedback : user_id
 User -- Survey : owner_id
@@ -123,6 +139,9 @@ Option -- Answer : answer_id
 Answer -- Result : answer_id
 Survey -- Question : survey_id
 Survey -- Feedback : survey_id
+User -- Role
+User -- Permission
+Role.id -- Permission.id : RolePermission
 
 @enduml
 
