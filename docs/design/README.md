@@ -43,23 +43,22 @@ entity Answer.user_id #FFC0CB
 entity Answer.question_id #FFC0CB
 entity Answer.answer_id #FFC0CB
 
+Answer.id -d-* Answer
+Answer.content -d-* Answer
+Answer.user_id -d-* Answer
+Answer.question_id -d-* Answer
+Answer.answer_id -d-* Answer
+
 entity Variant #9966CC
 entity Variant.id #9932CC
 entity Variant.text #9932CC
-'/ 
 
 Variant.id --* Variant
 Variant.text --l-* Variant
 
-
-
 entity SelectedVar #C23B22
 SelectedVar "0,* " <-u-> "1,1" Variant
 SelectedVar "0,* " <-d-> "1,1" Answer
-
-Answer.id -d-* Answer
-Answer.content -d-* Answer
-Answer.answer_id -d-* Answer
 
 entity Question #d147d1
 entity Question.id #D8BFD8
@@ -145,7 +144,23 @@ Permission.id -d-* Permission
 Permission.name -d-* Permission
 Permission.description -d-* Permission
 
+entity WorkflowEvent #FFA500
+entity WorkflowEvent.id #FFD700
+entity WorkflowEvent.datetime #FFD700
+entity WorkflowEvent.state #FFD700
+entity WorkflowEvent.description #FFD700
 
+WorkflowEvent.id -d-* WorkflowEvent
+WorkflowEvent.datetime -d-* WorkflowEvent
+WorkflowEvent.state -d-* WorkflowEvent
+WorkflowEvent.description -d-* WorkflowEvent
+
+entity EventParticipant #9370DB
+entity EventParticipant.id #D8BFD8
+entity EventParticipant.role #D8BFD8
+
+EventParticipant.id -d-* EventParticipant
+EventParticipant.role -d-* EventParticipant
 
 Quiz "1,1" <-- "0,*" Question
 
@@ -160,6 +175,11 @@ Answer "0 .. *" -- "1, 1" Result : answer_id
 
 Quiz "1, 1" -- "0 .. *" Feedback  
 Role "1, 1" -- "0 .. *" Permission : RolePermission
+
+WorkflowEvent "0,*" --> "1,1" User: initiator
+WorkflowEvent "1,1" --> "1,1" Quiz
+EventParticipant "0,*" --> "1,1" WorkflowEvent
+EventParticipant "0,*" --> "1,1" User
 
 @enduml
 
