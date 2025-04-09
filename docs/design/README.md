@@ -20,8 +20,24 @@ outline: deep
     padding: 1em;">
 
 @startuml
-
 left to right direction
+skinparam linetype polyline
+skinparam nodesep 80
+skinparam ranksep 80
+
+entity EventParticipant {
+    * id : UUID
+    --
+    role : TEXT
+}
+
+entity WorkflowEvent {
+    * id : UUID
+    --
+    datetime : DATETIME
+    state : TEXT
+    description : TEXT
+}
 
 entity User {
     * id : UUID
@@ -32,7 +48,6 @@ entity User {
     password : VARCHAR
     phone_number : VARCHAR
     age : SMALLINT
-    role_id : UUID
 }
 
 entity Role {
@@ -49,35 +64,51 @@ entity Permission {
     description : TEXT
 }
 
-entity RolePermission {
-    * role_id : UUID
-    * permission_id : UUID
-}
-
-entity Survey {
+entity Quiz {
     * id : UUID
     --
-    owner_id : UUID
     title : VARCHAR
     description : TEXT
     creation_date : DATETIME
     close_date : DATETIME
     is_active : BOOLEAN
+    owner_id : UUID
+}
+
+entity Feedback {
+    * id : UUID
+    --
+    title : VARCHAR
+    description : TEXT
+    date : DATETIME
+    user_id : UUID
+    quiz_id : UUID
 }
 
 entity Question {
     * id : UUID
     --
-    survey_id : UUID
-    description : TEXT
+    quiz_id : UUID
     header : VARCHAR
+    description : TEXT
 }
 
-entity Option {
+entity Type {
     * id : UUID
     --
     question_id : UUID
     description : TEXT
+}
+
+entity Variant {
+    * id : UUID
+    --
+    text : TEXT
+}
+
+entity SelectedVar {
+    * id : UUID
+    --
 }
 
 entity Answer {
@@ -89,7 +120,7 @@ entity Answer {
     answer_id : UUID
 }
 
-entity Results {
+entity Result {
     * id : UUID
     --
     content : TEXT
@@ -97,30 +128,32 @@ entity Results {
     answer_id : UUID
 }
 
-entity Feedback {
-    * id : UUID
-    --
-    title : VARCHAR
-    description : TEXT
-    date : DATETIME
-    user_id : UUID
-    survey_id : UUID
-}
+EventParticipant "0..*" --> "1.1" WorkflowEvent
+EventParticipant "0..*" --> "1.1" User
 
-User }o--|| Role : "has role"
-Role ||--|{ RolePermission : "assigns"
-Permission }|--|| RolePermission : "grants"
+WorkflowEvent "0..*" --> "1.1" User
+WorkflowEvent "1.1" -- "1.1" Quiz
 
-User ||--|{ Survey : "owns"
-Survey ||--|{ Question : "contains"
-Question ||--|{ Option : "has options"
+User "1.1" --> "0..*" Role
+User "1.1" -- "0.*" Feedback
 
-User ||--|{ Answer : "provides"
-Question ||--|{ Answer : "has answers"
-Answer ||--|{ Results : "produces"
+Permission "0..*" -- "1.1" User
+Role "1.1" --> "0..*" Permission
 
-User ||--|{ Feedback : "writes"
-Survey ||--|{ Feedback : "receives"
+Quiz "1.1" -- "0..*" Feedback
+Quiz "0..*" --> "1.1" User
+
+Question "0.*" --> "1.1" Quiz  
+Question "0..*" --> "1.1" Type
+
+Variant "0.*" --> "1.1" Question
+Variant "1.1" <--> "0.*" SelectedVar
+
+Answer "0.*" --> "1.1" User
+Answer "0.*" --> "1.1" Question
+Answer "0..1" <--> "0.*" SelectedVar
+
+Result "1.1" -- "0.*" Answer
 
 @enduml
 
