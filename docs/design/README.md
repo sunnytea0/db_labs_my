@@ -138,8 +138,7 @@ Survey ||--|{ Feedback : "receives"
     padding: 1em;"
 >
 
-![Реляційна схема](..%2Fimg%2Frelational_schema.png)
-
+![Реляційна схема](..%2Fimg%2Frelational_schema1.jpg)
 </center>
 
 ## Посилання
