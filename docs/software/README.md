@@ -1,11 +1,9 @@
 
 # Реалізація інформаційного та програмного забезпечення
 
-В рамках проекту розробляється:
-
-- SQL-скрипт для створення на початкового наповнення бази даних
-- RESTfull сервіс для управління даними
-```
+## SQL скрипти для ініціалізації та наповнення бази даних
+  
+```sql
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 CREATE TABLE Quiz (
@@ -18,8 +16,7 @@ is_active BOOLEAN DEFAULT TRUE,
 owner_id UUID NOT NULL,
 FOREIGN KEY (owner_id) REFERENCES "User"(id) ON DELETE CASCADE
 );
-```
-```
+
 INSERT INTO Quiz (title, description, creation_date, close_date, is_active, owner_id)
 VALUES
 ('Customer Satisfaction Quiz', 'Quiz about customer satisfaction', '2025-04-20 10:00:00', '2025-04-30 23:59:59', TRUE, 'e7b3f5b4-8a63-4e2e-baad-5a8c5c5b1234'),
