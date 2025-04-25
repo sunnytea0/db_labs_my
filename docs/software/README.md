@@ -14,7 +14,7 @@ CREATE TABLE Quiz (
     close_date TIMESTAMP,
     is_active BOOLEAN DEFAULT TRUE,
     owner_id UUID NOT NULL,
-    FOREIGN KEY (owner_id) REFERENCES "User"(id) ON DELETE CASCADE
+    FOREIGN KEY (owner_id) REFERENCES User(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Question (
