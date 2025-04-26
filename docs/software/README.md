@@ -77,9 +77,14 @@ VALUES
 =======
 - RESTfull сервіс для управління даними -->
 
+
+
 ```sql
+
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
 -- -----------------------------------------------------
--- Table "Feedback"
+-- Table "Feedback" з автогенерацією UUID
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS "Feedback" (
   id SERIAL PRIMARY KEY,
@@ -87,7 +92,7 @@ CREATE TABLE IF NOT EXISTS "Feedback" (
   date TIMESTAMP NOT NULL,
   user_id INTEGER NOT NULL,
   survey_id INTEGER,
-  uuid UUID NOT NULL,
+  uuid UUID NOT NULL DEFAULT uuid_generate_v4(), -- Ось тут autogenerate
   
   CONSTRAINT fk_feedback_user FOREIGN KEY (user_id)
     REFERENCES "User" (id)
@@ -100,11 +105,12 @@ CREATE TABLE IF NOT EXISTS "Feedback" (
     ON UPDATE CASCADE
 );
 
-
+-- Індекси для зовнішніх ключів
 CREATE INDEX IF NOT EXISTS idx_feedback_user ON "Feedback" (user_id);
 CREATE INDEX IF NOT EXISTS idx_feedback_survey ON "Feedback" (survey_id);
 
--- Insert example
-INSERT INTO "Feedback" (content, date, user_id, survey_id, uuid)
-VALUES ('This is some feedback content.', NOW(), 1, NULL, 'd8f3f8f0-5f7c-4288-b403-7787fbe3a9f3');
+-- Тепер можна вставляти дані без вказання uuid вручну
+INSERT INTO "Feedback" (content, date, user_id, survey_id)
+VALUES ('This is some feedback content.', NOW(), 1, NULL);
+
 
