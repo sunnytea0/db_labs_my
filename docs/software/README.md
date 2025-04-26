@@ -1,4 +1,3 @@
-
 # Реалізація інформаційного та програмного забезпечення
 
 ## SQL скрипти для ініціалізації та наповнення бази даних
@@ -39,6 +38,27 @@ CREATE TABLE EventParticipant (
     event_id UUID NOT NULL REFERENCES WorkflowEvent(id)
 );
 
+CREATE TABLE IF NOT EXISTS "Feedback" (
+  id PRIMARY KEY,
+  description TEXT NOT NULL,
+  date TIMESTAMP NOT NULL,
+  user_id  NOT NULL,
+  survey_id ,
+
+  CONSTRAINT fk_feedback_user FOREIGN KEY (user_id)
+    REFERENCES User(id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+
+  CONSTRAINT fk_feedback_survey FOREIGN KEY (survey_id)
+    REFERENCES Survey(id)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE
+);
+
+CREATE INDEX IF NOT EXISTS idx_feedback_user ON "Feedback" (user_id);
+CREATE INDEX IF NOT EXISTS idx_feedback_survey ON "Feedback" (survey_id);
+
 INSERT INTO Quiz (title, description, creation_date, close_date, is_active, owner_id)
 VALUES
     ('Customer Satisfaction Quiz', 'Quiz about customer satisfaction', '2025-04-20 10:00:00', '2025-04-30 23:59:59', TRUE, 'e7b3f5b4-8a63-4e2e-baad-5a8c5c5b1234'),
@@ -66,9 +86,13 @@ VALUES
   ('Reviewer', '359d3c13-30b6-4614-a54f-6d30bb5bd4ac', '20a8461b-03a6-4d4a-bd53-f33da214dbfc'),
   ('Submitter', '959d7ddf-12bb-4a3c-ae25-df4dbf60867e', 'c69418e5-38ae-4bc5-b6e8-ea98fc249aaf'),
   ('Observer', '959d7ddf-12bb-4a3c-ae25-df4dbf60867e', 'b5571635-803c-4fe0-95b1-382461510871');
+
+INSERT INTO Feedback (content, date, user_id, survey_id)
+VALUES ('This is some feedback content.', NOW(), 'dcd73fec-10fb-4bc5-8c01-938fa329af46', NULL);
 ```
 
 <!-- В рамках проекту розробляється:
 
 - SQL-скрипт для створення на початкового наповнення бази даних
+
 - RESTfull сервіс для управління даними -->
