@@ -66,7 +66,7 @@ VALUES
   ('Reviewer', '359d3c13-30b6-4614-a54f-6d30bb5bd4ac', '20a8461b-03a6-4d4a-bd53-f33da214dbfc'),
   ('Submitter', '959d7ddf-12bb-4a3c-ae25-df4dbf60867e', 'c69418e5-38ae-4bc5-b6e8-ea98fc249aaf'),
   ('Observer', '959d7ddf-12bb-4a3c-ae25-df4dbf60867e', 'b5571635-803c-4fe0-95b1-382461510871');
-```
+
 
 <!-- В рамках проекту розробляється:
 
@@ -76,7 +76,7 @@ VALUES
 
 
 
-```sql
+
 
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
@@ -108,5 +108,5 @@ CREATE INDEX IF NOT EXISTS idx_feedback_survey ON "Feedback" (survey_id);
 
 INSERT INTO "Feedback" (content, date, user_id, survey_id)
 VALUES ('This is some feedback content.', NOW(), 'dcd73fec-10fb-4bc5-8c01-938fa329af46', NULL);
-
+```
 
