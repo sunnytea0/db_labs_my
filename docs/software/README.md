@@ -87,12 +87,12 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 -- Table "Feedback" з автогенерацією UUID
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS "Feedback" (
-  id SERIAL PRIMARY KEY,
-  content TEXT NOT NULL,
+  id PRIMARY KEY,
+  description TEXT NOT NULL,
   date TIMESTAMP NOT NULL,
-  user_id INTEGER NOT NULL,
-  survey_id INTEGER,
-  uuid UUID NOT NULL DEFAULT uuid_generate_v4(), -- Ось тут autogenerate
+  user_id  NOT NULL,
+  survey_id ,
+
   
   CONSTRAINT fk_feedback_user FOREIGN KEY (user_id)
     REFERENCES "User" (id)
@@ -105,12 +105,11 @@ CREATE TABLE IF NOT EXISTS "Feedback" (
     ON UPDATE CASCADE
 );
 
--- Індекси для зовнішніх ключів
 CREATE INDEX IF NOT EXISTS idx_feedback_user ON "Feedback" (user_id);
 CREATE INDEX IF NOT EXISTS idx_feedback_survey ON "Feedback" (survey_id);
 
--- Тепер можна вставляти дані без вказання uuid вручну
+
 INSERT INTO "Feedback" (content, date, user_id, survey_id)
-VALUES ('This is some feedback content.', NOW(), 1, NULL);
+VALUES ('This is some feedback content.', NOW(), 'dcd73fec-10fb-4bc5-8c01-938fa329af46', NULL);
 
 
