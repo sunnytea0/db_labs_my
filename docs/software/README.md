@@ -80,9 +80,8 @@ VALUES
 
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
--- -----------------------------------------------------
--- Table "Feedback" з автогенерацією UUID
--- -----------------------------------------------------
+
+
 CREATE TABLE IF NOT EXISTS "Feedback" (
   id PRIMARY KEY,
   description TEXT NOT NULL,
