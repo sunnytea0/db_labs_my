@@ -32,6 +32,13 @@ CREATE TABLE IF NOT EXISTS Type (
     FOREIGN KEY (question_id) REFERENCES Question(id) ON DELETE CASCADE
 );
 
+CREATE TABLE EventParticipant (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    role TEXT NOT NULL,
+    user_id UUID NOT NULL REFERENCES "User"(id),
+    event_id UUID NOT NULL REFERENCES WorkflowEvent(id)
+);
+
 INSERT INTO Quiz (title, description, creation_date, close_date, is_active, owner_id)
 VALUES
     ('Customer Satisfaction Quiz', 'Quiz about customer satisfaction', '2025-04-20 10:00:00', '2025-04-30 23:59:59', TRUE, 'e7b3f5b4-8a63-4e2e-baad-5a8c5c5b1234'),
@@ -53,22 +60,6 @@ VALUES
   ('68d46927-04b7-4d88-bf3d-6cd2d61e0756', 'TEXT'),
   ('654d25da-b39f-4bf0-9731-4872b7c3b5b3', '1TO5RATING'),
   ('b7135385-ca55-458c-b3f7-8c56c6449117', 'YES/NO');
-```
-
-<!-- В рамках проекту розробляється:
-
-- SQL-скрипт для створення на початкового наповнення бази даних
-- RESTfull сервіс для управління даними -->
-
-```sql
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-
-CREATE TABLE EventParticipant (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    role TEXT NOT NULL,
-    user_id UUID NOT NULL REFERENCES "User"(id),
-    event_id UUID NOT NULL REFERENCES WorkflowEvent(id)
-);
 
 INSERT INTO EventParticipant (role, user_id, event_id)
 VALUES
@@ -76,3 +67,8 @@ VALUES
   ('Submitter', '959d7ddf-12bb-4a3c-ae25-df4dbf60867e', 'c69418e5-38ae-4bc5-b6e8-ea98fc249aaf'),
   ('Observer', '959d7ddf-12bb-4a3c-ae25-df4dbf60867e', 'b5571635-803c-4fe0-95b1-382461510871');
 ```
+
+<!-- В рамках проекту розробляється:
+
+- SQL-скрипт для створення на початкового наповнення бази даних
+- RESTfull сервіс для управління даними -->
