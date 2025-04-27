@@ -38,6 +38,21 @@ CREATE TABLE EventParticipant (
     event_id UUID NOT NULL REFERENCES WorkflowEvent(id)
 );
 
+CREATE TABLE Variant (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    question_id UUID NOT NULL,
+    text TEXT NOT NULL,
+    FOREIGN KEY (question_id) REFERENCES Question(id) ON DELETE CASCADE
+);
+
+CREATE TABLE SelectedVar (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    variant_id UUID NOT NULL,
+    answer_id UUID NOT NULL,
+    FOREIGN KEY (variant_id) REFERENCES Variant(id) ON DELETE CASCADE,
+    FOREIGN KEY (answer_id) REFERENCES Answer(id) ON DELETE CASCADE
+);
+
 CREATE TABLE IF NOT EXISTS "Feedback" (
   id PRIMARY KEY,
   description TEXT NOT NULL,
@@ -89,6 +104,18 @@ VALUES
 
 INSERT INTO Feedback (content, date, user_id, survey_id)
 VALUES ('This is some feedback content.', NOW(), 'dcd73fec-10fb-4bc5-8c01-938fa329af46', NULL);
+
+INSERT INTO Variant (question_id, text)
+VALUES
+    ('f1b5084c-3e9a-485d-92e4-9b4696c2f953', 'Option 1'),
+    ('f1b5084c-3e9a-485d-92e4-9b4696c2f953', 'Option 2'),
+    ('11a6f19f-612c-4562-acba-a4573decb6ef', 'Yes'),
+    ('11a6f19f-612c-4562-acba-a4573decb6ef', 'No');
+
+INSERT INTO SelectedVar (variant_id, answer_id)
+VALUES
+    ('550e8400-e29b-41d4-a716-446655440000', '123e4567-e89b-12d3-a456-426614174000'), 
+    ('6ba7b810-9dad-11d1-80b4-00c04fd430c8', '123e4567-e89b-12d3-a456-426614174001');
 ```
 
 <!-- В рамках проекту розробляється:
