@@ -5,6 +5,44 @@
 ```sql
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
+CREATE TABLE IF NOT EXISTS "User" (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    phone_number VARCHAR(20),
+    age SMALLINT
+);
+
+CREATE TABLE IF NOT EXISTS "Role" (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    name VARCHAR(255) NOT NULL,
+    description TEXT
+);
+
+CREATE TABLE IF NOT EXISTS "Permission" (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    name VARCHAR(255) NOT NULL,
+    description TEXT
+);
+
+CREATE TABLE IF NOT EXISTS user_roles (
+    user_id UUID NOT NULL,
+    role_id UUID NOT NULL,
+    PRIMARY KEY (user_id, role_id),
+    FOREIGN KEY (user_id) REFERENCES "User"(id) ON DELETE CASCADE,
+    FOREIGN KEY (role_id) REFERENCES "Role"(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS role_permissions (
+    role_id UUID NOT NULL,
+    permission_id UUID NOT NULL,
+    PRIMARY KEY (role_id, permission_id),
+    FOREIGN KEY (role_id) REFERENCES "Role"(id) ON DELETE CASCADE,
+    FOREIGN KEY (permission_id) REFERENCES "Permission"(id) ON DELETE CASCADE
+);
+
 CREATE TABLE Quiz (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     title VARCHAR(255) NOT NULL,
@@ -73,6 +111,36 @@ CREATE TABLE IF NOT EXISTS "Feedback" (
 
 CREATE INDEX IF NOT EXISTS idx_feedback_user ON "Feedback" (user_id);
 CREATE INDEX IF NOT EXISTS idx_feedback_survey ON "Feedback" (survey_id);
+
+INSERT INTO "Role" (name, description)
+VALUES 
+    ('Admin', 'Administrator role with full access'),
+    ('Editor', 'Editor role with content editing permissions'),
+    ('Viewer', 'Viewer role with read-only access');
+
+INSERT INTO "Permission" (name, description)
+VALUES 
+    ('Manage Users', 'Permission to manage users'),
+    ('Edit Content', 'Permission to edit content'),
+    ('View Content', 'Permission to view content');
+
+INSERT INTO "User" (first_name, last_name, email, password, phone_number, age)
+VALUES
+    ('Alice', 'Smith', 'alice@example.com', 'hashedpassword1', '+123456789', 30),
+    ('Bob', 'Johnson', 'bob@example.com', 'hashedpassword2', '+987654321', 25),
+    ('Charlie', 'Brown', 'charlie@example.com', 'hashedpassword3', '+192837465', 35);
+
+INSERT INTO user_roles (user_id, role_id)
+VALUES 
+    ((SELECT id FROM "User" WHERE email = 'alice@example.com'), (SELECT id FROM "Role" WHERE name = 'Admin')),
+    ((SELECT id FROM "User" WHERE email = 'bob@example.com'), (SELECT id FROM "Role" WHERE name = 'Editor')),
+    ((SELECT id FROM "User" WHERE email = 'charlie@example.com'), (SELECT id FROM "Role" WHERE name = 'Viewer'));
+
+INSERT INTO role_permissions (role_id, permission_id)
+VALUES
+    ((SELECT id FROM "Role" WHERE name = 'Admin'), (SELECT id FROM "Permission" WHERE name = 'Manage Users')),
+    ((SELECT id FROM "Role" WHERE name = 'Editor'), (SELECT id FROM "Permission" WHERE name = 'Edit Content')),
+    ((SELECT id FROM "Role" WHERE name = 'Viewer'), (SELECT id FROM "Permission" WHERE name = 'View Content'));
 
 INSERT INTO Quiz (title, description, creation_date, close_date, is_active, owner_id)
 VALUES
