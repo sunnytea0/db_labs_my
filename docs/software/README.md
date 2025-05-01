@@ -1,10 +1,5 @@
 # Реалізація інформаційного та програмного забезпечення
 
-В рамках проекту розробляється:
-
-- SQL-скрипт для створення на початкового наповнення бази даних
-- RESTfull сервіс для управління даними
-
 ## **SQL скрипти для ініціалізації та наповнення бази даних**
 
 ```sql
@@ -42,6 +37,11 @@ CREATE TABLE IF NOT EXISTS role_permissions (
     PRIMARY KEY (role_id, permission_id)
 );
 
+CREATE TABLE IF NOT EXISTS "Quiz" (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    title VARCHAR(255) NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS "WorkflowEvent" (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -75,6 +75,10 @@ INSERT INTO role_permissions (role_id, permission_id) VALUES
 ((SELECT id FROM "Role" WHERE name = 'Editor'), (SELECT id FROM "Permission" WHERE name = 'Edit Quizzes')),
 ((SELECT id FROM "Role" WHERE name = 'Viewer'), (SELECT id FROM "Permission" WHERE name = 'View Content'));
 
+INSERT INTO "Quiz" (title) VALUES
+('Java Basics'),
+('SQL Starter');
+
 INSERT INTO "WorkflowEvent" (created_at, description, user_id, quiz_id)
 VALUES
     (
@@ -95,8 +99,4 @@ VALUES
         (SELECT id FROM "User" WHERE email = 'marta@example.com'),
         (SELECT id FROM "Quiz" WHERE title = 'Java Basics')
     );
-
-
-
-
-
+```
