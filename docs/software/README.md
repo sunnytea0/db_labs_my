@@ -112,6 +112,15 @@ CREATE TABLE IF NOT EXISTS "Feedback" (
 CREATE INDEX IF NOT EXISTS idx_feedback_user ON "Feedback" (user_id);
 CREATE INDEX IF NOT EXISTS idx_feedback_survey ON "Feedback" (survey_id);
 
+CREATE TABLE IF NOT EXISTS "WorkflowEvent" (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    datetime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    state TEXT NOT NULL CHECK (state IN ('pending', 'approved', 'rejected', 'completed')),
+    description TEXT,
+    initiator_id UUID NOT NULL REFERENCES "User"(id) ON DELETE CASCADE,
+    quiz_id UUID NOT NULL REFERENCES "Quiz"(id) ON DELETE CASCADE
+);
+
 INSERT INTO "Role" (name, description)
 VALUES 
     ('Admin', 'Administrator role with full access'),
@@ -184,10 +193,14 @@ INSERT INTO SelectedVar (variant_id, answer_id)
 VALUES
     ('550e8400-e29b-41d4-a716-446655440000', '123e4567-e89b-12d3-a456-426614174000'), 
     ('6ba7b810-9dad-11d1-80b4-00c04fd430c8', '123e4567-e89b-12d3-a456-426614174001');
+
+INSERT INTO "WorkflowEvent" (datetime, state, description, initiator_id, quiz_id)
+VALUES
+    (NOW(), 'pending', 'Перевірка квізу про SQL', 
+        (SELECT id FROM "User" WHERE email='admin@example.com'), 
+        (SELECT id FROM "Quiz" WHERE title='Основи SQL')),
+    
+    (NOW(), 'approved', 'Затвердження квізу для початківців', 
+        (SELECT id FROM "User" WHERE email='reviewer@example.com'), 
+        (SELECT id FROM "Quiz" WHERE title='Бази даних 101'));
 ```
-
-<!-- В рамках проекту розробляється:
-
-- SQL-скрипт для створення на початкового наповнення бази даних
-
-- RESTfull сервіс для управління даними -->
