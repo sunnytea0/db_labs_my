@@ -234,3 +234,4 @@ INSERT INTO Result (content, nameanswer_id)
 VALUES ('User successfully answered the question.', 'First Attempt', 'the-uuid-of-the-answer-above');
 ('The second possible answer is 24.', 'e6d3b15e-29c4-49ad-97d3-61ad1234ac9b', 'bb4c2d4b-bc65-4e6e-bc63-f589ef2b1f2g'),
 ('A comment on the first answer.', 'f9b1d52e-8931-4cba-8a3d-243c4ed3b456', 'aa2d1f4a-bc65-4e6e-bc63-f589ef2b1f1f');
+```
