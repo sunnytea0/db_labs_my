@@ -49,25 +49,39 @@ Answer.user_id -d-* Answer
 Answer.question_id -d-* Answer
 Answer.answer_id -d-* Answer
 
+entity Variant #9966CC
+entity Variant.id #9932CC
+entity Variant.text #9932CC
+
+Variant.id --* Variant
+Variant.text --l-* Variant
+
+entity SelectedVar #C23B22
+SelectedVar "0,* " <-u-> "1,1" Variant
+SelectedVar "0,* " <-d-> "1,1" Answer
+
 entity Question #d147d1
 entity Question.id #D8BFD8
 entity Question.description #D8BFD8
-entity Question.survey_id #D8BFD8
+entity Question.quiz_id #D8BFD8
 entity Question.header #D8BFD8
 
 Question.id -d-* Question
 Question.description -d-* Question
-Question.survey_id -d-* Question
+Question.quiz_id -d-* Question
 Question.header -d-* Question
 
-entity Option #117d59
-entity Option.id #1ee8a4
-entity Option.description #1ee8a4
-entity Option.question_id #1ee8a4
+Question "1,1" <- "0,*" Answer 
+Variant "0,*" -u-> "1,1" Question
 
-Option.id -d-* Option
-Option.description -d-* Option
-Option.question_id -d-* Option
+entity Type #117d59
+entity Type.id #1ee8a4
+entity Type.description #1ee8a4
+entity Type.question_id #1ee8a4
+
+Type.id -d-* Type
+Type.description -d-* Type
+Type.question_id -d-* Type
 
 entity Result #00ff61
 entity Result.id #00ff61
@@ -86,31 +100,31 @@ entity Feedback.title #FFDAB9
 entity Feedback.description #FFDAB9
 entity Feedback.date #FFDAB9
 entity Feedback.user_id #FFDAB9
-entity Feedback.survey_id #FFDAB9
+entity Feedback.quiz_id #FFDAB9
 
 Feedback.id -d-* Feedback
 Feedback.title -d-* Feedback
 Feedback.description -d-* Feedback
 Feedback.date -d-* Feedback
 Feedback.user_id -d-* Feedback
-Feedback.survey_id -d-* Feedback
+Feedback.quiz_id -d-* Feedback
 
-entity Survey #06bfbf
-entity Survey.id #9effff
-entity Survey.owner_id #9effff
-entity Survey.description #9effff
-entity Survey.is_active #9effff
-entity Survey.creation_date #9effff
-entity Survey.close_date #9effff
-entity Survey.title #9effff
+entity Quiz #06bfbf
+entity Quiz.id #9effff
+entity Quiz.owner_id #9effff
+entity Quiz.description #9effff
+entity Quiz.is_active #9effff
+entity Quiz.creation_date #9effff
+entity Quiz.close_date #9effff
+entity Quiz.title #9effff
 
-Survey.id -d-* Survey
-Survey.owner_id -d-* Survey
-Survey.description -d-* Survey
-Survey.is_active -d-* Survey
-Survey.creation_date -d-* Survey
-Survey.close_date -d-* Survey
-Survey.title -d-* Survey
+Quiz.id -d-* Quiz
+Quiz.owner_id -d-* Quiz
+Quiz.description -d-* Quiz
+Quiz.is_active -d-* Quiz
+Quiz.creation_date -d-* Quiz
+Quiz.close_date -d-* Quiz
+Quiz.title -d-* Quiz
 
 entity Role #0c56bd
 entity Role.id #aaddff
@@ -130,18 +144,42 @@ Permission.id -d-* Permission
 Permission.name -d-* Permission
 Permission.description -d-* Permission
 
-User -- Answer : user_id
-User -- Feedback : user_id
-User -- Survey : owner_id
-Question -- Option : question_id
-Question -- Answer : question_id
-Option -- Answer : answer_id
-Answer -- Result : answer_id
-Survey -- Question : survey_id
-Survey -- Feedback : survey_id
-User -- Role
-User -- Permission
-Role.id -- Permission.id : RolePermission
+entity WorkflowEvent #FFA500
+entity WorkflowEvent.id #FFD700
+entity WorkflowEvent.datetime #FFD700
+entity WorkflowEvent.state #FFD700
+entity WorkflowEvent.description #FFD700
+
+WorkflowEvent.id -d-* WorkflowEvent
+WorkflowEvent.datetime -d-* WorkflowEvent
+WorkflowEvent.state -d-* WorkflowEvent
+WorkflowEvent.description -d-* WorkflowEvent
+
+entity EventParticipant #9370DB
+entity EventParticipant.id #D8BFD8
+entity EventParticipant.role #D8BFD8
+
+EventParticipant.id -d-* EventParticipant
+EventParticipant.role -d-* EventParticipant
+
+Quiz "1,1" <-- "0,*" Question
+
+User "1, 1" <-- "0, *" Answer : user_id
+User "1, 1" -- "0, *" Feedback : user_id
+User "1, 1" -- "0, *" Quiz : owner_id
+User "1, 1" --> "0, *" Role
+User "1, 1" -- "0 .. *" Permission
+Question "0, *" --> "1,1" Type 
+Question "1, 1" -- "0 .. *" Answer : question_id
+Answer "0 .. *" -- "1, 1" Result : answer_id
+
+Quiz "1, 1" -- "0 .. *" Feedback  
+Role "1, 1" -- "0 .. *" Permission : RolePermission
+
+WorkflowEvent "0,*" --> "1,1" User: initiator
+WorkflowEvent "1,1" --> "1,1" Quiz
+EventParticipant "0,*" --> "1,1" WorkflowEvent
+EventParticipant "0,*" --> "1,1" User
 
 @enduml
 
@@ -159,8 +197,24 @@ Role.id -- Permission.id : RolePermission
 >
 
 @startuml
-
 left to right direction
+skinparam linetype polyline
+skinparam nodesep 80
+skinparam ranksep 80
+
+entity EventParticipant {
+    * id : UUID
+    --
+    role : TEXT
+}
+
+entity WorkflowEvent {
+    * id : UUID
+    --
+    datetime : DATETIME
+    state : TEXT
+    description : TEXT
+}
 
 entity User {
     * id : UUID
@@ -171,7 +225,6 @@ entity User {
     password : VARCHAR
     phone_number : VARCHAR
     age : SMALLINT
-    role_id : UUID
 }
 
 entity Role {
@@ -188,35 +241,51 @@ entity Permission {
     description : TEXT
 }
 
-entity RolePermission {
-    * role_id : UUID
-    * permission_id : UUID
-}
-
-entity Survey {
+entity Quiz {
     * id : UUID
     --
-    owner_id : UUID
     title : VARCHAR
     description : TEXT
     creation_date : DATETIME
     close_date : DATETIME
     is_active : BOOLEAN
+    owner_id : UUID
+}
+
+entity Feedback {
+    * id : UUID
+    --
+    title : VARCHAR
+    description : TEXT
+    date : DATETIME
+    user_id : UUID
+    quiz_id : UUID
 }
 
 entity Question {
     * id : UUID
     --
-    survey_id : UUID
-    description : TEXT
+    quiz_id : UUID
     header : VARCHAR
+    description : TEXT
 }
 
-entity Option {
+entity Type {
     * id : UUID
     --
     question_id : UUID
     description : TEXT
+}
+
+entity Variant {
+    * id : UUID
+    --
+    text : TEXT
+}
+
+entity SelectedVar {
+    * id : UUID
+    --
 }
 
 entity Answer {
@@ -228,7 +297,7 @@ entity Answer {
     answer_id : UUID
 }
 
-entity Results {
+entity Result {
     * id : UUID
     --
     content : TEXT
@@ -236,30 +305,32 @@ entity Results {
     answer_id : UUID
 }
 
-entity Feedback {
-    * id : UUID
-    --
-    title : VARCHAR
-    description : TEXT
-    date : DATETIME
-    user_id : UUID
-    survey_id : UUID
-}
+EventParticipant "0..*" --> "1.1" WorkflowEvent
+EventParticipant "0..*" --> "1.1" User
 
-User }o--|| Role : "has role"
-Role ||--|{ RolePermission : "assigns"
-Permission }|--|| RolePermission : "grants"
+WorkflowEvent "0..*" --> "1.1" User
+WorkflowEvent "1.1" -- "1.1" Quiz
 
-User ||--|{ Survey : "owns"
-Survey ||--|{ Question : "contains"
-Question ||--|{ Option : "has options"
+User "1.1" --> "0..*" Role
+User "1.1" -- "0.*" Feedback
 
-User ||--|{ Answer : "provides"
-Question ||--|{ Answer : "has answers"
-Answer ||--|{ Results : "produces"
+Permission "0..*" -- "1.1" User
+Role "1.1" --> "0..*" Permission
 
-User ||--|{ Feedback : "writes"
-Survey ||--|{ Feedback : "receives"
+Quiz "1.1" -- "0..*" Feedback
+Quiz "0..*" --> "1.1" User
+
+Question "0.*" --> "1.1" Quiz  
+Question "0..*" --> "1.1" Type
+
+Variant "0.*" --> "1.1" Question
+Variant "1.1" <--> "0.*" SelectedVar
+
+Answer "0.*" --> "1.1" User
+Answer "0.*" --> "1.1" Question
+Answer "0..1" <--> "0.*" SelectedVar
+
+Result "1.1" -- "0.*" Answer
 
 @enduml
 
@@ -276,8 +347,7 @@ Survey ||--|{ Feedback : "receives"
     padding: 1em;"
 >
 
-![Реляційна схема](..%2Fimg%2Frelational_schema.png)
-
+![Реляційна схема](..%2Fimg%2Frelational_schema1.jpg)
 </center>
 
 ## Посилання
