@@ -5,58 +5,43 @@ outline: deep
 
 # Тестування працездатності системи
 
-## Передумови
 
-### 1. Встановити залежнсті проекту
+### GET: отримати всі відповідь
 
-```bash
-yarn
-```
+![alt text](answergetall.png)
 
-### 2. Запустити сервер
+### GET: отримати конкретне відповідь
 
-```bash
-yarn run start:dev
-```
+![alt text](answergetbyid.png)
 
-## Перевірка працездатности сервісів
+### POST: створити відповідь
 
-### GET: отримати всі запитання
+![alt text](answerpost.png)
 
-![alt text](1.png)
+### PUT: оновити відповідь
 
-### GET: отримати конкретне запитання
+![alt text](answerput.png)
 
-![alt text](2.png)
+### DELETE: вилучити відповідь
 
-### POST: створити запитання
+![alt text](answerdelete.png)
 
-![alt text](3.png)
+### GET: отримати всі результати
 
-### PUT: оновити запитання
+![alt text](resultgetall.png)
 
-![alt text](4.png)
+### GET: отримати конкретний результат
 
-### DELETE: вилучити запитання
+![alt text](resultgetbyid.png)
 
-![alt text](5.png)
+### POST: створити результат
 
-### GET: отримати всі типи запитаннь
+![alt text](resultpost.png)
 
-![alt text](6.png)
+### PUT: оновити результат
 
-### GET: отримати конкретний тип запитання
+![alt text](resultput.png)
 
-![alt text](7.png)
+### DELETE: вилучити результат
 
-### POST: створити тип запитання
-
-![alt text](8.png)
-
-### PUT: оновити тип запитання
-
-![alt text](9.png)
-
-### DELETE: вилучити тип запитання
-
-![alt text](10.png)
+![alt text](resultdelete.png)
