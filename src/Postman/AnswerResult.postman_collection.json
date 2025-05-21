@@ -1,0 +1,407 @@
+{
+	"info": {
+		"_postman_id": "b5d4fa63-c533-4fbd-a239-e5029571b3b6",
+		"name": "AnswerResult",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2544223"
+	},
+	"item": [
+		{
+			"name": "answer-get-all",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "21BF0F30-7795-4BF2-99CC-13C505D38259",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"authorId\" : null,\r\n    \"authorName\" : \"Freeman A.zzz\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/answer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"answer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "answer-post",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "21BF0F30-7795-4BF2-99CC-13C505D38259",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\" : \"The answer to life is 25.\",\r\n    \"userId\" : \"e6d3b15e-29c4-49ad-97d3-61ad1234ac9b\",\r\n    \"questionId\" : \"aa2d1f4a-bc65-4e6e-ba63-f589ef2b1f1f\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/answer/360f12b7-08b4-4a8f-9e21-4e1294c82191",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"answer",
+						"360f12b7-08b4-4a8f-9e21-4e1294c82191"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "answer-delete",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "21BF0F30-7795-4BF2-99CC-13C505D38259",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\" : \"The answer to life is 25.\",\r\n    \"userId\" : \"e6d3b15e-29c4-49ad-97d3-61ad1234ac9b\",\r\n    \"questionId\" : \"aa2d1f4a-bc65-4e6e-ba63-f589ef2b1f1f\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/answer/360f12b7-08b4-4a8f-9e21-4e1294c82191",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"answer",
+						"360f12b7-08b4-4a8f-9e21-4e1294c82191"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "answer-put",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "21BF0F30-7795-4BF2-99CC-13C505D38259",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\" : \"dd08321f-f603-4bec-a137-4620e3b3951e\",\r\n    \"content\" : \"The answer to life is 43.\",\r\n    \"userId\" : \"d3e1b89e-23f5-4de1-a37d-5243f16f9b8c\",\r\n    \"questionId\" : \"aa2d1f4a-bc65-4e6e-bc63-f589ef2b1f1f\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/answer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"answer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "answer-get-id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "21BF0F30-7795-4BF2-99CC-13C505D38259",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"authorId\" : null,\r\n    \"authorName\" : \"Freeman A.zzz\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/answer/dd08321f-f603-4bec-a137-4620e3b3951e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"answer",
+						"dd08321f-f603-4bec-a137-4620e3b3951e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "result-get-all",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "21BF0F30-7795-4BF2-99CC-13C505D38259",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"authorId\" : null,\r\n    \"authorName\" : \"Freeman A.zzz\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/result",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"result"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "result-post",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "21BF0F30-7795-4BF2-99CC-13C505D38259",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\" : \"User successfully answered the question.\",\r\n    \"name\" : \"First Attempt\",\r\n    \"answerId\" : \"dd08321f-f603-4bec-a137-4620e3b3951e\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/result",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"result"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "result-get-id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "21BF0F30-7795-4BF2-99CC-13C505D38259",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"authorId\" : null,\r\n    \"authorName\" : \"Freeman A.zzz\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/result/dd62b44c-c76f-41b6-9fa2-1c45e6be89dd",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"result",
+						"dd62b44c-c76f-41b6-9fa2-1c45e6be89dd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "result-put",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "21BF0F30-7795-4BF2-99CC-13C505D38259",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"dd62b44c-c76f-41b6-9fa2-1c45e6be89dd\",\r\n    \"content\" : \"User successfully answered that question.\",\r\n    \"name\" : \"Second Attempt\",\r\n    \"answerId\" : \"dd08321f-f603-4bec-a137-4620e3b3951e\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/result",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"result"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "result-delete",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "21BF0F30-7795-4BF2-99CC-13C505D38259",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"authorId\" : null,\r\n    \"authorName\" : \"Freeman A.zzz\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/result/385f2680-4afc-4a2c-99b8-33d254e16626",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"result",
+						"385f2680-4afc-4a2c-99b8-33d254e16626"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
