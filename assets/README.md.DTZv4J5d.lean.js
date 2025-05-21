@@ -1,0 +1,1 @@
+import{_ as a,c as r,o as t,ag as o}from"./chunks/framework.DSsEZrhx.js";const c=JSON.parse('{"title":"Автор","description":"","frontmatter":{},"headers":[],"relativePath":"README.md","filePath":"README.md"}'),n={name:"README.md"};function s(p,e,l,_,i,h){return t(),r("div",null,e[0]||(e[0]=[o("",8)]))}const m=a(n,[["render",s]]);export{c as __pageData,m as default};
